@@ -17,23 +17,23 @@
 			<div class="col-md-12">
 				<h1>Form validation challenge</h1>
 				<form>
-					<div class="form-group">
+					<div class="form-group" id="requiredField">
 						<label>Required field:</label>
 						<input type="text" class="form-control">
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="maxLength">
 						<label>Max length 8:</label>
 						<input type="text" class="form-control">
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="requiredMinMax">
 						<label>Required - Min length 10 - Max length 25:</label>
 						<input type="text" class="form-control">
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="notRequiredMinMax">
 						<label>Not required - Min length 10 - Max length 25:</label>
 						<input type="text" class="form-control">
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="lettersOnly">
 						<label>Letters only:</label>
 						<input type="text" class="form-control">
 					</div>
@@ -42,7 +42,7 @@
 						<label><input type="radio" value="1"> Yes</label>
 						<label><input type="radio" value="0"> No</label>
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="radioRequired">
 						<label>Required if above field is Yes:</label>
 						<input type="text" class="form-control">
 					</div>
@@ -50,7 +50,7 @@
 						<input type="submit" class="btn btn-success" value="Validate!">
 					</div>
 					<h4>Optional</h4>
-					<div class="form-group">
+					<div class="form-group" id="validEmail">
 						<label>Valid email:</label>
 						<input type="email" class="form-control">
 					</div>
