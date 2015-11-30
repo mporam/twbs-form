@@ -10,7 +10,7 @@
 
     //document.getElementById('feet').innerHTML = "girrl you looking fly!"
     $('#feet').html("pepepepepe")
-*/
+
 
 $(function() {
 
@@ -18,3 +18,4 @@ $(function() {
 
 })
 
+*/
