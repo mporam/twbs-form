@@ -27,8 +27,15 @@ $(function() {
         return false;
     })
 
+//this is a watcher
+    $('form').on('charlie', function() {
+        alert('you clicked submit')
+        $('#notRequired').trigger('focus')
+        return false;
+    })
+
     $('#requiredField').blur(function() {
-        var requiredField = $('input').val()
+        var requiredField = $('#requiredField').val()
         if (requiredField == false) {
             $('#requiredLabel').append("<p id='requiredError'>This field is required</p>")
         }
@@ -45,11 +52,23 @@ $(function() {
             }
     })
 
-//this is a watcher
-    $('form').on('charlie', function() {
-        alert('you clicked submit')
-        $('#notRequired').trigger('focus')
-        return false;
+    $('#minMaxRequired').keyup(function() {
+        var minMaxRequiredLength = $('#minMaxRequired').val();
+        $('#minMaxRError').remove()
+        if (minMaxRequiredLength.length < 10 || minMaxRequiredLength.length > 24) {
+            $('#minMaxRLabel').append("<p id='minMaxRError'>Must be between 10 and 25 characters</p>")
+        }
+    })
+
+    $('#minMaxRequired').blur(function() {
+
+        var minMaxValidate = $('#minMaxRequired').val()
+        if (minMaxValidate == false) {
+            $('#minMaxRLabel').append("<p id='minMaxRequiredError'>This field is required</p>")
+        }
+        else {
+            $('#minMaxRequiredError').remove()
+        }
     })
 
 
