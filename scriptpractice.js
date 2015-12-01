@@ -19,3 +19,9 @@ $(function() {
 })
 
 */
+
+if ($('#firstname').val(length == 0)) {
+    $('#head').text("* All fields are mandatory *"); // This Segment Displays The Validation Rule For All Fields
+    $("#firstname").focus();
+    return false;
+}
