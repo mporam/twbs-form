@@ -28,15 +28,24 @@ $(function() {
     })
 
     $('#requiredField').blur(function() {
-        var field = $('input').val()
-        if (field == false) {
-            $('#requiredLabel').append("<p id='requiredError'>a new pokemon has appeared</p>")
+        var requiredField = $('input').val()
+        if (requiredField == false) {
+            $('#requiredLabel').append("<p id='requiredError'>This field is required</p>")
         }
         else {
             $('#requiredError').remove()
-
         }
     })
+
+    $('#maxLengthEight').keyup(function() {
+        var maxLengthEight = $('#maxLengthEight').val();
+        $('#lengthError').remove()
+        if (maxLengthEight.length > 8) {
+                $('#lengthLabel').append("<p id='lengthError'>This field cannot be more than 8 characters</p>")
+            }
+    })
+
+
 
 
 
