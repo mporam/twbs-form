@@ -27,11 +27,18 @@ $(function() {
         return false;
     })
 
-    $('#requiredField').focus(function() {
-        console.log('required field')
-        return false;
+    $('#requiredField').blur(function() {
+        var field = $('input').val()
+        if (field == false) {
+            $('#requiredLabel').append("<p id='requiredError'>a new pokemon has appeared</p>")
+        }
+        else {
+            $('#requiredError').remove()
+
+        }
     })
 
 
 
 })
+
