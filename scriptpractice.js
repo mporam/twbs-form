@@ -23,7 +23,7 @@ $(function() {
 $(function() {
 
     $('#form').submit(function() {
-        alert('you clicked submit')
+        $('form').trigger('charlie')
         return false;
     })
 
@@ -45,7 +45,12 @@ $(function() {
             }
     })
 
-
+//this is a watcher
+    $('form').on('charlie', function() {
+        alert('you clicked submit')
+        $('#notRequired').trigger('focus')
+        return false;
+    })
 
 
 
