@@ -63,12 +63,13 @@ $(function() {
     $('#minMaxRequired').blur(function() {
 
         var minMaxValidate = $('#minMaxRequired').val()
-        if (minMaxValidate == false) {
+        if (minMaxValidate.length < 1) {
             $('#minMaxRLabel').append("<p id='minMaxRequiredError'>This field is required</p>")
         }
         else {
             $('#minMaxRequiredError').remove()
         }
+        //TODO fix bug - spacebar input
     })
 
 
