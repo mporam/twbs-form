@@ -2,8 +2,8 @@
 <html>
 <head>
 
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="script.js"></script>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script src="validation.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
           integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
           crossorigin="anonymous">
@@ -20,52 +20,57 @@
         <div class="col-md-12">
             <h1 id="title">Form validation challenge</h1>
 
-            <form>
+            <form name="form" action="" method="post">
                 <div class="form-group">
-                    <label id="oneLabel">Required field:</label>
-                    <input type="text" class="form-control" id="one">
+                    <label id="oneLabel" for="f1">Required field:</label>
+                    <input type="text" class="form-control" id="f1">
 
                 </div>
                 <div class="form-group">
-                    <label>Max length 8:</label>
-                    <input type="text" class="form-control">
+                    <label for="f2">Max length 8:</label>
+                    <input type="text" class="form-control" id="f2">
 
                 </div>
                 <div class="form-group">
-                    <label>Required - Min length 10 - Max length 25:</label>
-                    <input type="text" class="form-control">
+                    <label for="f3">Required - Min length 10 - Max length 25:</label>
+                    <input type="text" class="form-control" id="f3">
 
                 </div>
                 <div class="form-group">
-                    <label>Not required - Min length 10 - Max length 25:</label>
-                    <input type="text" class="form-control">
+                    <label for="f4">Not required - Min length 10 - Max length 25:</label>
+                    <input type="text" class="form-control" id="f4">
 
                 </div>
                 <div class="form-group">
-                    <label>Letters only:</label>
-                    <input type="text" class="form-control" id="letters">
+                    <label for="f5">Letters only:</label>
+                    <input type="text" class="form-control" id="f5">
 
                 </div>
-                <p></p>
+
                 <div class="radio">
-                    <strong name="strong">Not required:</strong><br>
-                    <label><input type="radio" value="1"> Yes</label>
-                    <label><input type="radio" value="0"> No</label>
+                    <strong>Not required:</strong><br>
+                    <label><input type="radio" name="radio" value="1"> Yes</label>
+                    <label><input type="radio" name="radio" value="0"> No</label>
 
                 </div>
                 <div class="form-group">
-                    <label>Required if above field is Yes:</label>
-                    <input type="text" class="form-control">
+                    <label for="f6">Required if above field is Yes:</label>
+                    <input type="text" class="form-control" id="f6">
 
                 </div>
                 <div class="form-group" id="button">
                     <input type="submit" class="btn btn-success" value="Validate!">
                 </div>
-                <h4>Optional</h4>
+                <div id="optional">
+                    <h4>Optional</h4>
 
-                <div class="form-group">
-                    <label>Valid email:</label>
-                    <input type="email" class="form-control">
+                    <div class="form-group">
+                        <label for="f7">Valid email:</label>
+                        <input type="email" class="form-control" id="f7">
+
+                    </div>
+                </div>
+                <div id="result">
 
                 </div>
             </form>
