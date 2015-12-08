@@ -37,66 +37,74 @@ function hideMessage(element) {
 /**
  * checks the required field has and input value and changes the border appropriately and displays appropriate message
  * @param     String   element   html element selector
- * @returns   bool               false in invalid input
+ * @returns   Number             one if invalid input, zero if valid
  */
 function checkRequired(element) {
     var value = $(element).val()
     if (value) {
         changeBorderColor('green', element)
         hideMessage(element)
+        return 0
     } else {
         changeBorderColor('red', element)
         displayMessage(element, 'Please fill this required field')
-        return false
+        return 1
     }
 }
 /**
  * check if the input has a valid length of characters and changes the border appropriately and displays appropriate message
  * @param    Number   min        minimum valid number of characters allowed
  * @param    Number   max        maximum valid number of characters allowed
- * @param    String    element    html element selector
- * @returns  bool                 false in invalid input
+ * @param    String   element    html element selector
+ * @returns  Number              one if invalid input, zero if valid
  */
 function checkLength(min, max, element) {
     var inputLength = $(element).val().length
+    var result = 1
     if (inputLength > 0) {
         if (inputLength < min) {
             changeBorderColor('red', element)
             displayMessage(element, 'Not enough characters')
-            return false
+            result = 1
         } else if (inputLength > max) {
             changeBorderColor('red', element)
             displayMessage(element, 'Too many characters')
-            return false
+            result = 1
         }
         else {
             changeBorderColor('green', element)
             hideMessage(element)
+            result = 0
         }
+    } else {
+        changeBorderColor('green', element)
+        hideMessage(element)
+        result = 0
     }
+    return result
 }
 /**
  * check if the input contains letters only and changes the border appropriately and displays appropriate message
  * @param    String   element    html element selector
- * @returns  bool                false if contains invalid characters
+ * @returns  Number              one if invalid input, zero if valid
  */
 function checkLetterOnly(element) {
     var lettersOnly = /^[a-zA-Z]+$/
     var inputValue = $(element).val()
-    console.log(inputValue)
     if (lettersOnly.test(inputValue)) {
         changeBorderColor('green', element)
         hideMessage(element)
+        return 0
     } else {
         changeBorderColor('red', element)
         displayMessage(element, 'Only letters allowed!')
-        return false
+        return 1
     }
 }
 /**
  * check if the input is a valid email address and changes the border appropriately and displays appropriate message
  * @param    String   element    html element selector
- * @returns  boolean             false if input is not a valid email address
+ * @returns  Number              one if invalid input, zero if valid
  */
 function checkEmail(element) {
     var emailString = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm
@@ -104,10 +112,11 @@ function checkEmail(element) {
     if (emailString.test(inputValue)) {
         changeBorderColor('green', element)
         hideMessage(element)
+        return 0
     } else {
         changeBorderColor('red', element)
         displayMessage(element, 'This is not a valid email address!')
-        return false
+        return 1
     }
 }
 $(function () {
@@ -125,9 +134,8 @@ $(function () {
         }
     })
     $('#f4').blur(function () {
-        if ($('#f4').val()) {
-            checkLength(10, 25, '#f4')
-        }
+        checkLength(10, 25, '#f4')
+
     })
     $('#f5').blur(function () {
         if ($('#f5').val()) {
@@ -135,8 +143,11 @@ $(function () {
         }
     })
     $('#f6').blur(function () {
-        if ($('[type=radio]').prop('checked')) {
+        if ($('[type=radio]').first().prop('checked')) {
             checkRequired('#f6')
+        } else {
+            changeBorderColor('green', '#f6')
+            hideMessage('#f6')
         }
     })
     $('#f7').blur(function () {
@@ -146,43 +157,32 @@ $(function () {
     })
     $('form').submit(function () {
         var result = 0
-        if (!checkRequired('#f1') || !checkLength(0, 8, '#f2')) {
-            result += 1
-        }
+        result += checkRequired('#f1')
+        result += checkLength(0, 8, '#f2')
         if ($('#f3').val()) {
-            if (!checkLength(10, 25, '#f3'))
-            {
-                result += 1
-            }
+            result += checkLength(0, 8, '#f2')
         } else {
-            if (!checkRequired('#f3'))
-            {
-                result += 1
-            }
+            result += checkRequired('#f3')
         }
         if ($('#f4').val()) {
-            if (!checkLength(10, 25, '#f4')) {
-                result += 1
-            }
+            result += checkLength(10, 25, '#f4')
         }
         if ($('#f5').val()) {
-            if (!checkLetterOnly('#f5')) {
-                result += 1
-            }
+            result += checkLetterOnly('#f5')
         }
-        if ($('[type=radio]').prop('checked')) {
-            if (!checkRequired('#f6')){
-                result += 1
-            }
+        if ($('[type=radio]').first().prop('checked')) {
+            result += checkRequired('#f6')
+        } else {
+            changeBorderColor('green', '#f6')
+            hideMessage('#f6')
         }
         if ($('#f7').val()) {
-            if (!checkEmail('#f7')){
-                result += 1
-            }
+            result += checkEmail('#f7')
         }
-        if(result == 0){
-            return true
+        if (result == 0) {
+            alert("validated!")
         } else {
+            alert("Did not pass validation")
             return false
         }
     })
