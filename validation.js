@@ -52,8 +52,8 @@ function checkRequired(element) {
 }
 /**
  * check if the input has a valid length of characters and changes the border appropriately and displays appropriate message
- * @param    Integer   min        minimum valid number of characters allowed
- * @param    Integer   max        maximum valid number of characters allowed
+ * @param    Number   min        minimum valid number of characters allowed
+ * @param    Number   max        maximum valid number of characters allowed
  * @param    String    element    html element selector
  * @returns  bool                 false in invalid input
  */
