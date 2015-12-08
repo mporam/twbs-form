@@ -12,7 +12,7 @@ function changeBorderColor(color, element) {
     }
     if (color == 'green') {
         $(element).css({
-            "box-shadow": "inset 0 2px 2px rgba(0,0,0,.075),0 0 8px rgba(77, 255, 136,.8)",
+            "box-shadow": "inset 0 2px 2px rgba(0,0,0,.075),0 0 8px rgba(51, 153, 51,.8)",
             "border-color": "#00802b"
         })
     }
@@ -24,7 +24,7 @@ function changeBorderColor(color, element) {
  */
 function displayMessage(element, message) {
     hideMessage(element)
-    $(element).after("<p class=\"msg\">" + message + "</p>")
+    $(element).after("<p class=\"text-danger\">" + message + "</p>")
 }
 
 /**
@@ -32,7 +32,7 @@ function displayMessage(element, message) {
  * @param   String   element   html element selector
  */
 function hideMessage(element) {
-    $(element).parent('.form-group').children('.msg').remove()
+    $(element).parent('.form-group').children('.text-danger').remove()
 }
 /**
  * checks the required field has and input value and changes the border appropriately and displays appropriate message
@@ -145,30 +145,45 @@ $(function () {
         }
     })
     $('form').submit(function () {
-        checkRequired('#f1')
-        console.log(checkRequired('#f1'))
-
-        checkLength(0, 8, '#f2')
-        if ($('#f3').val()) {
-            checkLength(10, 25, '#f3')
-        } else {
-            checkRequired('#f3')
+        var result = 0
+        if (!checkRequired('#f1') || !checkLength(0, 8, '#f2')) {
+            result += 1
         }
-        $('#f4').blur(function () {
-            if ($('#f4').val()) {
-                checkLength(10, 25, '#f4')
+        if ($('#f3').val()) {
+            if (!checkLength(10, 25, '#f3'))
+            {
+                result += 1
             }
-        })
+        } else {
+            if (!checkRequired('#f3'))
+            {
+                result += 1
+            }
+        }
+        if ($('#f4').val()) {
+            if (!checkLength(10, 25, '#f4')) {
+                result += 1
+            }
+        }
         if ($('#f5').val()) {
-            checkLetterOnly('#f5')
+            if (!checkLetterOnly('#f5')) {
+                result += 1
+            }
         }
         if ($('[type=radio]').prop('checked')) {
-            checkRequired('#f6')
+            if (!checkRequired('#f6')){
+                result += 1
+            }
         }
         if ($('#f7').val()) {
-            checkEmail('#f7')
+            if (!checkEmail('#f7')){
+                result += 1
+            }
         }
-
+        if(result == 0){
+            return true
+        } else {
+            return false
+        }
     })
-
 })
