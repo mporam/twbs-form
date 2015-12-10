@@ -35,7 +35,8 @@ $(function() {
     })
 
     $('#requiredField').blur(function() {
-        var requiredField = $('#requiredField').val()
+        $('#requiredError').remove()
+        var requiredField = $(this).val()
         if (requiredField == false) {
             $('#requiredLabel').append("<p id='requiredError'>This field is required</p>")
         }
@@ -45,7 +46,7 @@ $(function() {
     })
 
     $('#maxLengthEight').keyup(function() {
-        var maxLengthEight = $('#maxLengthEight').val();
+        var maxLengthEight = $(this).val()
         $('#lengthError').remove()
         if (maxLengthEight.length > 8) {
                 $('#lengthLabel').append("<p id='lengthError'>This field cannot be more than 8 characters</p>")
@@ -53,7 +54,7 @@ $(function() {
     })
 
     $('#minMaxRequired').keyup(function() {
-        var minMaxRequiredLength = $('#minMaxRequired').val();
+        var minMaxRequiredLength = $(this).val()
         $('#minMaxRError').remove()
         if (minMaxRequiredLength.length < 10 || minMaxRequiredLength.length > 24) {
             $('#minMaxRLabel').append("<p id='minMaxRError'>Must be between 10 and 25 characters</p>")
@@ -61,8 +62,8 @@ $(function() {
     })
 
     $('#minMaxRequired').blur(function() {
-
-        var minMaxValidate = $('#minMaxRequired').val()
+        $('#minMaxRequiredError').remove()
+        var minMaxValidate = $(this).val()
         if (minMaxValidate.length < 1) {
             $('#minMaxRLabel').append("<p id='minMaxRequiredError'>This field is required</p>")
         }
@@ -72,6 +73,20 @@ $(function() {
         //TODO fix bug - spacebar input
     })
 
+    $('#minMaxNotRequired').keyup(function() {
+        var minMaxNotRequiredLength = $(this).val()
+        $('#minMaxNRError').remove()
+        if (minMaxNotRequiredLength.length <10 || minMaxNotRequiredLength.length > 24) {
+            $('#minMaxNRLabel').append("<p id='minMaxNRError'>Must be between 10 and 25 characters</p>")
+        }
+    })
+
+    $('#lettersOnly').keypress(function(key) {
+            if((key.charCode < 97 || key.charCode > 122) &&
+                (key.charCode < 65 || key.charCode > 90)) {
+                return false
+            }
+        });
 
 
 })
