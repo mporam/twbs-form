@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
@@ -17,9 +17,7 @@
     Must display appropriate error messages and prevent form submission
     No plugins! (jQuery is okay)
     -->
-
     <title>Form validation challenge</title>
-
 </head>
 <body>
 <div class="container">
@@ -28,11 +26,11 @@
             <h1>Form validation challenge</h1>
             <form id="target">
                 <div class="form-group">
-                    <label>Required field:</label>
+                    <label id="label1">Required field:</label>
                     <input type="text" id="field1" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Max length 8:</label>
+                    <label id="label2">Max length 8:</label>
                     <input type="text" class="form-control " id="field2">
                 </div>
                 <div class="form-group">
@@ -44,7 +42,7 @@
                     <input type="text" class="form-control" id="field4">
                 </div>
                 <div class="form-group">
-                    <label>Letters only:</label>
+                    <label id="label5">Letters only:</label>
                     <input type="text" class="form-control" id="field5">
                 </div>
                 <div class="radio">
@@ -53,23 +51,20 @@
                     <input type="radio" name="radio" id="radio2" value="0"> No
                 </div>
                 <div class="form-group">
-                    <label>Required if above field is Yes:</label>
+                    <label id="label6">Required if above field is Yes:</label>
                     <input type="text" class="form-control" id="field6">
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Validate!">
-
                 </div>
                 <h4>Optional</h4>
                 <div class="form-group">
-                    <label>Valid email:</label>
+                    <label id="label7">Valid email:</label>
                     <input type="text" class="form-control" id="email">
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

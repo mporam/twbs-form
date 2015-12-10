@@ -1,138 +1,143 @@
-/**
- * Created by peterwilkins on 02/12/2015.
- */
-
-
-
-$(function () {
-
-    $('#target').submit(function (e) {
-        e.preventDefault();
+$(function() {
+    $('#target').submit(function(e) {
+        e.preventDefault()
         // required
         if (!$('#field1').val()) {
-            $("#err1").alert('close');
+            $("#err1").alert('close')
             $('#field1').after(
-                '<div class="alert alert-danger alert-dismissable" id="err1">' +
+                '<div class="alert alert-danger alert-dismissable err" id="err1">' +
                 '<button type="button" class="close" ' +
                 'data-dismiss="alert" aria-hidden="true">' +
                 '&times;' +
                 '</button>' +
-                'Required field' +
-                '</div>');
-            console.log('field1 is empty');
+                $("#label1").text() +
+                '</div>')
+            $('#err1').slideDown('slow')
         }
         else {
-            $("#err1").alert('close');
+            $("#err1").slideUp('close')
         }
-
         //Max length 8
-        if ($('#field2').val().length >= 8) {
-            $("#err2").alert('close');
+        if ($('#field2').val().length > 8) {
+            $("#err2").alert('close')
             $('#field2').after(
-                '<div class="alert alert-danger alert-dismissable" id="err2">' +
+                '<div class="alert alert-danger alert-dismissable err" id="err2">' +
                 '<button type="button" class="close" ' +
                 'data-dismiss="alert" aria-hidden="true">' +
                 '&times;' +
                 '</button>' +
-                'Max length 8' +
-                '</div>');
-            console.log('field2 longer than 8');
+                $("#label2").text() +
+                '</div>')
+            $('#err2').slideDown('slow')
         }
         else {
-            $("#err2").alert('close');
+            $("#err2").slideUp('slow')
         }
         //Required - Min length 10 - Max length 25
-        if ($('#field3').val().length < 10 || $('#field3').val().length > 25) {
-            $("#err3").alert('close');
+        var length = $('#field3').val().length
+        var message
+        if (length < 10 || length > 25) {
+            if (length < 10) {
+                message = 'Min length is 10'
+            }
+            if (length > 25) {
+                message = 'Max length is 25'
+            }
+            if (length === 0) {
+                message = 'Field is required'
+            }
+            $("#err3").alert('close')
             $('#field3').after(
-                '<div class="alert alert-danger alert-dismissable" id="err3">' +
+                '<div class="alert alert-danger alert-dismissable err" id="err3">' +
                 '<button type="button" class="close" ' +
                 'data-dismiss="alert" aria-hidden="true">' +
                 '&times;' +
                 '</button>' +
-                'Required field, Min length 10 - Max length 25' +
-                '</div>');
-            console.log('field3 wrong');
+                message +
+                '</div>')
+            $('#err3').slideDown('slow')
         }
         else {
-            $("#err3").alert('close');
+            $("#err3").slideUp('slow')
         }
-
         //Not required - Min length 10 - Max length 25
         if ($('#field4').val()) {
-            if ($('#field4').val().length < 10 || $('#field4').val().length > 25) {
-                $("#err4").alert('close');
+            length = $('#field4').val().length
+            if (length < 10 || length > 25) {
+
+                if (length < 10) {
+                    message = 'Min length is 10'
+                }
+                if (length > 25) {
+                    message = 'Max length is 25'
+                }
+                $("#err4").alert('close')
                 $('#field4').after(
-                    '<div class="alert alert-danger alert-dismissable" id="err4">' +
+                    '<div class="alert alert-danger alert-dismissable err" id="err4">' +
                     '<button type="button" class="close" ' +
                     'data-dismiss="alert" aria-hidden="true">' +
                     '&times;' +
                     '</button>' +
-                    'Not Required field, Min length 10 - Max length 25' +
-                    '</div>');
-                console.log('field4 wrong');
+                    message +
+                    '</div>')
+                $('#err4').slideDown('slow')
             }
             else {
-                $("#err4").alert('close');
+                $("#err4").slideUp('close')
             }
         }
-
         //Letters only
-        var testLetters = /^[a-zA-Z]+$/;
+        var testLetters = /^[a-zA-Z\s]+$/
         if ($('#field5').val()) {
             if (!testLetters.test($('#field5').val())) {
-                $("#err5").alert('close');
+                $("#err5").alert('close')
                 $('#field5').after(
-                    '<div class="alert alert-danger alert-dismissable" id="err5">' +
+                    '<div class="alert alert-danger alert-dismissable err" id="err5">' +
                     '<button type="button" class="close" ' +
                     'data-dismiss="alert" aria-hidden="true">' +
                     '&times;' +
                     '</button>' +
-                    'Letters only' +
-                    '</div>');
-                console.log('field5 not all letters');
+                    $("#label5").text() +
+                    '</div>')
+                $('#err5').slideDown('slow')
             }
             else {
-                $("#err5").alert('close');
+                $("#err5").slideUp('close')
             }
-
         }
         //Required if radio is Yes
-        console.log($('#radio1').prop('checked'));
         if ($('#radio1').prop('checked') && !$('#field6').val()) {
-            $("#err6").alert('close');
+            $("#err6").alert('close')
             $('#field6').after(
-                '<div class="alert alert-danger alert-dismissable" id="err6">' +
+                '<div class="alert alert-danger alert-dismissable err" id="err6">' +
                 '<button type="button" class="close" ' +
                 'data-dismiss="alert" aria-hidden="true">' +
                 '&times;' +
                 '</button>' +
-                'Required if above radio is Yes' +
-                '</div>');
-            console.log('radio is yes and field6 is empty');
-
+                $("#label6").text() +
+                '</div>')
+            $('#err6').slideDown('slow')
         }
         else {
-            $("#err6").alert('close');
+            $("#err6").slideUp('close')
         }
         //Valid email
-        var testEmail = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
-        if(!testEmail.test($('#email').val())){
-            $("#err7").alert('close');
+        var testEmail = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm
+        if (!testEmail.test($('#email').val())) {
+            $("#err7").alert('close')
             $('#email').after(
-                '<div class="alert alert-danger alert-dismissable" id="err7">' +
+                '<div class="alert alert-danger alert-dismissable err" id="err7">' +
                 '<button type="button" class="close" ' +
                 'data-dismiss="alert" aria-hidden="true">' +
                 '&times;' +
                 '</button>' +
-                'Valid email required' +
+                $("#label7").text() +
                 '</div>');
-            console.log('email is invalid');
+            $('#err7').slideDown('slow')
         }
         else {
-            $("#err7").alert('close');
+            $("#err7").slideUp('close')
         }
-        return false;
+        return false
     })
 })
-;
