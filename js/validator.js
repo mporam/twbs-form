@@ -38,13 +38,13 @@ $(function() {
         var message
         if (length < 10 || length > 25) {
             if (length < 10) {
-                message = 'Min length is 10'
+                message = 'Min length is 10 '
             }
             if (length > 25) {
-                message = 'Max length is 25'
+                message = 'Max length is 25 '
             }
             if (length === 0) {
-                message = 'Field is required'
+                message += 'and field is required'
             }
             $("#err3").alert('close')
             $('#field3').after(
@@ -87,7 +87,7 @@ $(function() {
             }
         }
         //Letters only
-        var testLetters = /^[a-zA-Z\s]+$/
+        var testLetters = /^[A-z\s]+$/
         if ($('#field5').val()) {
             if (!testLetters.test($('#field5').val())) {
                 $("#err5").alert('close')
