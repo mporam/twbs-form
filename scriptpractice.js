@@ -1,59 +1,29 @@
-/*
-    //document.getElementsByClassName('form-group')[0].innerHTML = "hahahahahahaha"
-    $('.form-group').html("hahahahaha")
-
-    //document.getElementsByTagName('label')[0].innerHTML = "oh laaaawdy"
-    $('label').text("helloo")
-
-    //document.getElementsByName('charlie')[0].innerHTML = "mmmmmmm honeychild"
-    $('[name=charlie]').html("<p>fo sho</p>")
-
-    //document.getElementById('feet').innerHTML = "girrl you looking fly!"
-    $('#feet').html("pepepepepe")
-
-
-$(function() {
-
-    $('.form-group,.radio').not('#button').append("<p>a new pokemon has appeared</p>")
-
-})
-
-*/
-
 $(function() {
 
     $('#form').submit(function() {
         $('form').trigger('charlie')
-        return false;
+        return false
     })
 
 //this is a watcher
     $('form').on('charlie', function() {
-        alert('you clicked submit')
-        $('#notRequired').trigger('focus')
-        return false;
+            alert('congratulations everything is validated')
     })
 
-    $('#requiredField').blur(function() {
+    $('form').on('charlie', function() {
         $('#requiredError').remove()
-        var requiredField = $(this).val()
-        if (requiredField == false) {
+        var requiredField = $('#requiredField').val()
+        if (!requiredField) {
             $('#requiredLabel').append("<p id='requiredError'>This field is required</p>")
+            console.log('if')
         }
         else {
             $('#requiredError').remove()
+            console.log('else')
         }
     })
 
-    $('#maxLengthEight').keyup(function() {
-        var maxLengthEight = $(this).val()
-        $('#lengthError').remove()
-        if (maxLengthEight.length > 8) {
-                $('#lengthLabel').append("<p id='lengthError'>This field cannot be more than 8 characters</p>")
-            }
-    })
-
-    $('#minMaxRequired').keyup(function() {
+    $('form').on('charlie', function() {
         var minMaxRequiredLength = $(this).val()
         $('#minMaxRError').remove()
         if (minMaxRequiredLength.length < 10 || minMaxRequiredLength.length > 24) {
@@ -61,16 +31,29 @@ $(function() {
         }
     })
 
-    $('#minMaxRequired').blur(function() {
+    $('form').on('charlie', function() {
         $('#minMaxRequiredError').remove()
         var minMaxValidate = $(this).val()
         if (minMaxValidate.length < 1) {
             $('#minMaxRLabel').append("<p id='minMaxRequiredError'>This field is required</p>")
         }
-        else {
-            $('#minMaxRequiredError').remove()
+    })
+
+    $('form').on('charlie', function() {
+            $('#requiredRadioError').remove()
+            if ($('#radioYes').prop("checked")) {
+                if($('#requiredRadio').val() == false) {
+                    $('#requiredRadioLabel').append("<p id='requiredRadioError'>This field is required</p>")
+                }
+            }
+    })
+
+    $('#maxLengthEight').keyup(function() {
+        var maxLengthEight = $(this).val()
+        $('#lengthError').remove()
+        if (maxLengthEight.length > 8) {
+            $('#lengthLabel').append("<p id='lengthError'>This field cannot be more than 8 characters</p>")
         }
-        //TODO fix bug - spacebar input
     })
 
     $('#minMaxNotRequired').keyup(function() {
@@ -82,12 +65,19 @@ $(function() {
     })
 
     $('#lettersOnly').keypress(function(key) {
-            if((key.charCode < 97 || key.charCode > 122) &&
-                (key.charCode < 65 || key.charCode > 90)) {
-                return false
-            }
-        });
+        if((key.charCode < 97 || key.charCode > 122) &&
+            (key.charCode < 65 || key.charCode > 90)) {
+            return false
+        }
+    })
 
+    $('.radio1').change(function () {
+        $('#requiredRadioError').remove()
+        if ($('#radioYes').prop("checked")) {
+            if($('#requiredRadio').val() == false) {
+                $('#requiredRadioLabel').append("<p id='requiredRadioError'>This field is required</p>")
+            }
+        }
+    })
 
 })
-

@@ -33,18 +33,18 @@
 						<label id="minMaxNRLabel">Not required - Min length 10 - Max length 25:</label>
 						<input type="text" class="form-control" id="minMaxNotRequired">
 					</div>
-					<div class="form-group" id="lettersOnly">
+					<div class="form-group">
 						<label id="lettersOnlyError">Letters only:</label>
 						<input type="text" class="form-control" id="lettersOnly">
 					</div>
 					<div class="radio">
 						<strong>Not required:</strong><br>
-						<label><input type="radio" value="1"> Yes</label>
-						<label><input type="radio" value="0"> No</label>
+						<label><input type="radio" class="radio1" id="radioYes" name="radioButt" value="1"> Yes</label>
+						<label><input type="radio" class="radio1" id="radioNo" name="radioButt" value="0"> No</label>
 					</div>
-					<div class="form-group" id="radioRequired">
-						<label>Required if above field is Yes:</label>
-						<input type="text" class="form-control">
+					<div class="form-group">
+						<label id="requiredRadioLabel">Required if above field is Yes:</label>
+						<input type="text" id="requiredRadio" class="form-control">
 					</div>
 					<div class="form-group" id="button">
 						<input type="submit" class="btn btn-success" value="Validate!">
