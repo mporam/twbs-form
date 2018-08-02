@@ -4,6 +4,11 @@ for (var i = 0; i < forms.length; i++) {
     forms[i].setAttribute('novalidate', true);
 }
 
+var depends = document.getElementById('radio-1').addEventListener('change', function() {
+    document.getElementById("reqIfRadioYes").required = this.checked;
+})
+
+
 // Validate the field
 var hasError = function (field) {
     // Don't validate submits, buttons, file and reset inputs, and disabled fields
@@ -51,6 +56,9 @@ var hasError = function (field) {
     // If all else fails, return a generic catchall error
     return 'The value you entered for this field is invalid.';
 };
+
+//validate Required if above field is Yes: (above field = radio button)
+
 
 // Show an error message
 var showError = function (field, error) {
