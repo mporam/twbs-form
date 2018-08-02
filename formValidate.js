@@ -19,10 +19,10 @@ var hasError = function (field) {
     if (validity.valueMissing) return 'Please fill out this field.';
 
     // If too short
-    if (validity.tooShort) return 'Please lengthen this text.';
+    if (validity.tooShort) return 'Please enter at least ' + field.getAttribute('minlength') + ' characters.';
 
     // If too long
-    if (validity.tooLong) return 'Please shorten this text.';
+    if (validity.tooLong) return 'Please enter no more than ' + field.getAttribute('maxlength') + ' characters.';
 
     // If number input isn't a number
     if (validity.badInput) return 'Please enter a number.';
@@ -42,7 +42,7 @@ var hasError = function (field) {
     // If not the right type
     if (validity.typeMismatch) {
         // Email
-        if (field.type === 'email') return 'Please enter an email address.';
+        if (field.type === 'email') return 'Please enter a valid email address.';
 
         // URL
         if (field.type === 'url') return 'Please enter a URL.';
