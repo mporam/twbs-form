@@ -1,12 +1,12 @@
 //add novalidate to disable native browser validation
 var forms = document.querySelectorAll('form');
-for (var i = 0; i < forms.length; i++) {
-    forms[i].setAttribute('novalidate', true);
-}
+forms.forEach(function(form) {
+    form.setAttribute('novalidate', true)
+});
 
 
 //validate Required if above field is Yes: (above field = radio button)
-var depends = document.getElementById('radio-1').addEventListener('change', function() {
+document.getElementById('radio-1').addEventListener('change', function() {
     document.getElementById("reqIfRadioYes").required = this.checked;
 })
 
