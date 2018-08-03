@@ -4,6 +4,8 @@ for (var i = 0; i < forms.length; i++) {
     forms[i].setAttribute('novalidate', true);
 }
 
+
+//validate Required if above field is Yes: (above field = radio button)
 var depends = document.getElementById('radio-1').addEventListener('change', function() {
     document.getElementById("reqIfRadioYes").required = this.checked;
 })
@@ -57,7 +59,7 @@ var hasError = function (field) {
     return 'The value you entered for this field is invalid.';
 };
 
-//validate Required if above field is Yes: (above field = radio button)
+
 
 
 // Show an error message
