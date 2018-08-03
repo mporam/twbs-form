@@ -14,7 +14,10 @@ document.querySelector("#radio-1").addEventListener('click', function() {
 // Validate the field
 var hasError = function (field) {
     // Don't validate submits, buttons, file and reset inputs, and disabled fields
-    if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
+    var ignore = ['file', 'reset', 'submit', 'button'];
+    var type = field.type;
+    if (ignore.includes('type')) return;
+    if (field.disabled) return;
 
     // Get validity
     var validity = field.validity;
@@ -153,7 +156,7 @@ var removeError = function (field) {
     var message = field.form.querySelector('.error-message#error-for-' + id + '');
     if (!message) return;
 
-    // If so, hide it
+    // // If so, hide it
     message.innerHTML = '';
     message.style.display = 'none';
     message.style.visibility = 'hidden';
