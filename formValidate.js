@@ -6,8 +6,8 @@ forms.forEach(function(form) {
 
 
 //validate Required if above field is Yes: (above field = radio button)
-document.getElementById('radio-1').addEventListener('change', function() {
-    document.getElementById("reqIfRadioYes").required = this.checked;
+document.querySelector("#radio-1").addEventListener('click', function() {
+    document.querySelector("#reqIfRadioYes").required = this.checked;
 })
 
 
